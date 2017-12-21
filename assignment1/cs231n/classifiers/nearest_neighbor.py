@@ -37,18 +37,3 @@ class NearestNeighbor(object):
             print('????: %.2f%%' % i / num_test)
 
         return ypred
-
-
-def test():
-    Xtr, Ytr, Xte, Yte = load_CIFAR10(os.getcwd() +
-                                      '/cs231n/datasets/cifar-10-batches-py/')
-    # Xtr_rows becomes 50000 x 3072
-    Xtr_rows = Xtr.reshape(Xtr.shape[0], 32 * 32 * 3)
-    # Xte_rows becomes 10000 x 3072
-    Xte_rows = Xte.reshape(Xte.shape[0], 32 * 32 * 3)
-
-    nn = NearestNeighbor()
-    nn.train(Xtr_rows, Ytr)
-
-    yte_pred = nn.predict(Xte_rows)
-    print('accuracy: %f' % (np.mean(yte_pred == Yte)))
